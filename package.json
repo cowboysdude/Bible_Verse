@@ -1,0 +1,17 @@
+{
+  "name": "bible_verse",
+  "version": "1.0.0",
+  "main": "Bible_Verse.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Cowboysdude",
+  "license": "MIT",
+  "dependencies": {
+    "@vitalets/google-translate-api": "^7.0.0",
+    "random-image-unsplash": "^1.0.6",
+    "random-picture": "^4.0.4"
+  },
+  "devDependencies": {},
+  "description": ""
+}

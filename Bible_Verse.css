@@ -1,0 +1,23 @@
+
+@import url('https://fonts.googleapis.com/css?family=Sansita');
+
+.Bible_Verse {
+    width: 35%;
+    	
+}
+.Bible_Verse .description {
+	font-family: 'Sansita', sans-serif;
+}
+/* Container holding the image and the text */
+.Bible_Verse .containers {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+/* Bottom left text */
+.Bible_Verse .bottom-left {
+  position: absolute;
+  bottom: 8px;
+  left: 16px;
+}
