@@ -9,8 +9,7 @@
   "license": "MIT",
   "dependencies": {
     "@vitalets/google-translate-api": "^7.0.0",
-    "random-image-unsplash": "^1.0.6",
-    "random-picture": "^4.0.4"
+    "node-fetch": "^2.6.1"
   },
   "devDependencies": {},
   "description": ""
