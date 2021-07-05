@@ -8,9 +8,9 @@ Module.register("Bible_Verse", {
 
     defaults: {
         updateInterval: 120 * 60 * 1000,
-		// updateInterval: 1000,
+        //updateInterval: 5000,
         animationSpeed: 2000,
-        initialLoadDelay: 875 
+        initialLoadDelay: 875
     },
 
     getStyles: function() {
@@ -21,17 +21,19 @@ Module.register("Bible_Verse", {
     start: function() {
         Log.info("Starting module: " + this.name);
         this.config.lang = this.config.lang || config.language;
-		this.sendSocketNotification("CONFIG", this.config);
+        this.sendSocketNotification("CONFIG", this.config);
         this.verse = {};
+		this.image = {};
         // Set locale.
         this.today = "";
         this.scheduleUpdate();
     },
 
 
-    getDom: function() { 
+    getDom: function() {
         var verse = this.verse.verse;
-		var source = this.verse.source;
+        var source = this.verse.source;
+        var image = this.image.image;
 
         var wrapper = document.createElement("div");
         wrapper.className = "wrapper";
@@ -45,46 +47,31 @@ Module.register("Bible_Verse", {
         }
 
         var top = document.createElement("div");
-		
-	
-		
-		/////////////////////////// RANDOM IMAGE ////////////////////////////////////////////////		
-		
-		var imagesURL = "https://source.unsplash.com/1600x900/?nature";
-        
-		function getImage() {
-		  var imagesURL = "https://source.unsplash.com/1600x900/?nature";
-		  return imagesURL;
-		}
 
-		setInterval(getImage, 1000);
-	
-		// I've tried setInterval etc to get a new image when the verse updates but all I'm getting is 404 errors when 
-		// it updates.....
-		
-		
-		
-        var text = verse +"<br><font color=gray>"+source+"</font>";
-		
+        var text = verse + "<br><font color=white>" + source + "</font>";
 
         var des = document.createElement("div");
         des.classList.add("small", "bright", "description");
-        des.innerHTML =    
-		`<div class="containers">
-		<img src="${imagesURL}" alt="" style="width:99%;">
+        des.innerHTML =
+            `<div class="containers">
+		<img class = "image" src="${image}" alt="" style="width:99%;">
 		<div class="bottom-left">${text}</div> 
-		</div>`; 
+		</div>`;
         top.appendChild(des);
-		
-		wrapper.appendChild(top);
-		
-        return wrapper;
 
+        wrapper.appendChild(top);
+
+        return wrapper;
     },
 
     processVerse: function(data) {
-        this.verse = data[0];
+        this.verse = data;
         console.log(this.verse);
+    },
+
+    processImage: function(data) {
+        this.image = data;
+        console.log(this.image);
         this.loaded = true;
         this.updateDom(this.config.animationSpeed);
     },
@@ -104,7 +91,9 @@ Module.register("Bible_Verse", {
         if (notification === "VERSE_RESULT") {
             this.processVerse(payload);
         }
+        if (notification === "IMAGE_RESULT") {
+            this.processImage(payload);
+        }
         this.updateDom(this.config.initialLoadDelay);
     },
-
 });
