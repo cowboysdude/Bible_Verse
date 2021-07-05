@@ -2,8 +2,7 @@
 @import url('https://fonts.googleapis.com/css?family=Sansita');
 
 .Bible_Verse {
-    width: 35%;
-    	
+    width: 25%;
 }
 .Bible_Verse .description {
 	font-family: 'Sansita', sans-serif;
@@ -14,10 +13,16 @@
   text-align: center;
   color: white;
 }
+.Bible_Verse .image {
+   width: 115px;
+   height: 225px;
+    filter: brightness(50%);
+}
 
 /* Bottom left text */
 .Bible_Verse .bottom-left {
   position: absolute;
   bottom: 8px;
   left: 16px;
+  color: orange;
 }
